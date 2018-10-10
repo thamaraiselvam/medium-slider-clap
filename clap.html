@@ -1,0 +1,65 @@
+<head>
+    <style>
+        #range {
+            width: 2px;
+            position: relative;
+            border: 0;
+            height: 180px;
+            background: #959799;
+            outline: none;
+        }
+
+        #range .ui-slider-handle {
+            position: absolute;
+            margin: 0px 0 0 -13px;
+            height: 40px;
+            width: 40px;
+            outline: none;
+            cursor: pointer;
+            border-radius: 46px;
+        }
+
+        .ui-slider-handle {
+            background-size: 45px !important;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+        }
+
+        #range .ui-slider-handle:hover,
+        #range .ui-slider-handle:focus {
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        #range .ui-slider-range {
+            background: #3e9b2e;
+        }
+
+        #range #currentVal {
+            position: absolute;
+            font-size: 18px;
+            font-weight: bold;
+            color: #3e9b2e;
+            width: 160px;
+            margin: -28px 0px 0px -6px;
+        }
+
+        #range {
+            position: fixed;
+            bottom: 66px;
+            right: 60px;
+            z-index: 100000;
+        }
+    </style>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css">
+</head>
+
+<body>
+    <div id="range"> <span id="currentVal"></span> </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+</body>

@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "Medium Slider Claps",
+    "description": "Claps easily with slider for your arctiles which you liked a lot",
+    "version": "1",
+    "author": "Thamaraiselvam",
+   "browser_action": {
+      "default_icon": "image.png",
+      "default_title": "Claps"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://medium.com/*"],
+        "js": ["jquery.js", "index.js"]
+      }
+    ],
+    "background": {
+      "scripts": [ "jquery.js", "background.js"],
+      "persistent": true
+    },
+    "web_accessible_resources": ["script.js", "clap.html", "clap.png"],
+    "permissions": ["webRequest", "https://medium.com/*", "activeTab", "webRequestBlocking"]
+   }
+   
