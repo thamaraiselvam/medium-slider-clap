@@ -1,52 +1,62 @@
-//Inject clap html into DOM
-$.get(chrome.extension.getURL('/clap.html'), function(data) {
-    $(data).appendTo('body');
-});
+(function () {
+    
+    injectHTMLFile();
+    injectScriptFile();
+    listenScriptInit();
+    listenClapEvent();
 
-//Appending script.js to "real" webpage. So will it can full access to webpate.
-var s = document.createElement('script');
-s.src = chrome.extension.getURL('script.js');
-(document.head || document.documentElement).appendChild(s);
-//Our script.js only add listener to window object, 
-//so we don't need it after it finish its job. But depend your case, 
-//you may want to keep it.
-s.parentNode.removeChild(s);
-
-s.onload = function(){
-    $( document ).ready(function() {
-        $( "#currentVal" ).change( function() {
-            
+    function injectHTMLFile(){
+        //Inject clap html into DOM
+        $.get(chrome.extension.getURL('/inject/clap.html'), function(data) {
+            $(data).appendTo('body');
         });
-        
-    });
+    }
 
-    var url = chrome.runtime.getURL("clap.png");
-    var evt = document.createEvent("CustomEvent");
-    evt.initCustomEvent("yourCustomEvent2", true, true, url);
-    document.dispatchEvent(evt);
-  };
+    function injectScriptFile(){
+        // //Appending inject/script to "real" webpage. So will it can full access to webpate.
+        var s = document.createElement('script');
+        // TODO: add "script.js" to web_accessible_resources in manifest.json
+        s.src = chrome.extension.getURL('inject/script.js');
+        (document.head || document.documentElement).appendChild(s);
 
-var globalData;
-document.addEventListener('yourCustomEvent', function (e) {
-    console.log(e.detail)
-    globalData = e.detail;
-});
+        s.onload = function(){
+            var url = chrome.runtime.getURL("assets/clap.png");
+            var evt = document.createEvent("CustomEvent");
+            evt.initCustomEvent("injectScriptOnLoadEvent", true, true, url);
+            document.dispatchEvent(evt);
+        };
+    }
 
-document.addEventListener('yourCustomEvent3', function (e) {
-    console.log(e.detail)
-    chrome.extension.sendMessage(
-        {
-            requestMethod: "clap",
-            requestData :{
-                headers:globalData.headers,
-                body:{
-                    "userId":globalData.userId,
-                    "clapIncrement":e.detail.claps
-                },
-                additionalData:{
-                    postID: $('.button--bookmark').attr('data-action-value')
+    function listenScriptInit(){
+        document.addEventListener('injectScriptInitEvent', function (e) {
+            window.mscData = e.detail;
+        });
+    }
+
+    function listenClapEvent(){
+        document.addEventListener('triggerClapEvent', function (e) {
+            chrome.extension.sendMessage(
+                {
+                    requestMethod: "clap",
+                    requestData :{
+                        headers:window.mscData.headers,
+                        body:{
+                            "userId":window.mscData.userId,
+                            "clapIncrement":e.detail.claps
+                        },
+                        additionalData:{
+                            postID: $('.button--bookmark').attr('data-action-value')
+                        }
+                    }
                 }
-            }
-        }
-    );
-});
+            );
+        });
+    }
+})();
+
+
+
+
+
+
+

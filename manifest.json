@@ -5,20 +5,20 @@
     "version": "1",
     "author": "Thamaraiselvam",
    "browser_action": {
-      "default_icon": "image.png",
+      "default_icon": "assets/medium-icon.png",
       "default_title": "Claps"
     },
     "content_scripts": [
       {
         "matches": ["https://medium.com/*"],
-        "js": ["jquery.js", "index.js"]
+        "js": ["lib/jquery.js", "index.js"]
       }
     ],
     "background": {
-      "scripts": [ "jquery.js", "background.js"],
+      "scripts": [ "lib/jquery.js", "background.js"],
       "persistent": true
     },
-    "web_accessible_resources": ["script.js", "clap.html", "clap.png"],
+    "web_accessible_resources": ["inject/script.js", "inject/clap.html", "assets/clap.png"],
     "permissions": ["webRequest", "https://medium.com/*", "activeTab", "webRequestBlocking"]
    }
    
