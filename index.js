@@ -24,6 +24,7 @@
             var evt = document.createEvent("CustomEvent");
             evt.initCustomEvent("injectScriptOnLoadEvent", true, true, url);
             document.dispatchEvent(evt);
+            toggleMSClapper();
         };
     }
 
@@ -51,6 +52,33 @@
                 }
             );
         });
+    }
+
+    function toggleMSClapper(){
+        // Select the node that will be observed for mutations
+        var targetNode = document.querySelector('.js-postLeftSidebar');
+
+        // Options for the observer (which mutations to observe)
+        var config = {
+            attributes: true,
+            subtree: true,
+        };
+
+        // Callback function to execute when mutations are observed
+        var callback = function(mutationsList, observer) {
+            if($('.js-postShareWidget').hasClass('u-transition--fadeOut300')){
+            $("#msc-range").fadeOut();
+            return ;
+            }
+            
+            $("#msc-range").fadeIn();
+        };
+
+        // Create an observer instance linked to the callback function
+        var observer = new MutationObserver(callback);
+
+        // Start observing the target node for configured mutations
+        observer.observe(targetNode, config);
     }
 })();
 
