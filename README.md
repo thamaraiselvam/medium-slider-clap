@@ -1,6 +1,11 @@
 # Medium Slider Clap
 Add or Remove claps for your favorites medium stories using the simple slider.
 
+# Screenshot
+
+![default view](https://user-images.githubusercontent.com/6559664/46852557-0baa1400-ce19-11e8-977c-765517c66b2e.png)
+
+
 ## How to install
 1.Download .crx file here 
 https://github.com/thamaraiselvam/medium-slider-clap/releases
