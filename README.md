@@ -1,5 +1,18 @@
-# medium-slider-clap
+# Medium Slider Clap
 Add or Remove claps for your favorites medium stories using the simple slider.
+
+## How to install
+1.Download .crx file here 
+https://github.com/thamaraiselvam/medium-slider-clap/releases
+
+2.Drag & Drop - the .crx on to the 'Extensions' page.
+
+3.Settings-Icon > Tools > Extensions
+( the 'three horizontal-bars' icon in the top-right corner )
+
+4.Drag and drop the "crx" extension file onto the Extensions page from [step 1]
+( .crx file should likely be in your Downloads directory )
+
 
 Note:
 
